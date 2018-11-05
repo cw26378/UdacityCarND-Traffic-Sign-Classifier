@@ -197,12 +197,9 @@ Here are the results of the prediction:
 | Construction			| Construction      							|
 | STOP Sign  			| Priority road      							|
 
-![test image][image4]
-![test image][image5]
-![test image][image6]
-![test image][image7]
-![test image][image8]
-![test image][image9]
+![test image][image4] ![test image][image5]
+![test image][image6] ![test image][image7]
+![test image][image8] ![test image][image9]
 
 
 The model was able to correctly guess 5 of the 6 traffic signs, which gives an accuracy of 83%. Given that test set has also 93% accuracy this is reasonable. I also included the 6th images because I actually found that Stop sign image cannot be correctly identified by the model when selecting 5 images from download. This is to illustrate that I did not cherry picking the good 5 images from the web. Actually, I even tried two stop signs images but neither of the two stop signs are correctly labled. I checked the distribution histogram of the training examples. Clearly, at label = 14, the data size is small (dip shown in the histogram figure around 14). This may be related the failure at reading stop sign.  
