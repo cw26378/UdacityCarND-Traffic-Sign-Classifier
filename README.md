@@ -1,8 +1,8 @@
-#**Traffic Sign Recognition** 
+## Writeup Template
 
-##Writeup Template
-
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
+---
+### **Traffic Sign Recognition** 
+### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
 
 ---
 
@@ -18,29 +18,30 @@ The goals / steps of this project are the following:
 
 
 [//]: # (Image References)
-
+[image0]: ./examples/histogram.png "Data Distribution"
 [image1]: ./examples/visualization.jpg "Visualization"
 [image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image3]: ./examples/random_image_example.png "Random Image"
+[image4]: ./examples/test-1.png "Traffic Sign 1"
+[image5]: ./examples/test-2.png "Traffic Sign 2"
+[image6]: ./examples/test-3.png "Traffic Sign 3"
+[image7]: ./examples/test-4.png "Traffic Sign 4"
+[image8]: ./examples/test-5.png "Traffic Sign 5"
+[image9]: ./examples/test-6.png "Traffic Sign 6"
 
 ## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
+### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
 ---
-###Writeup / README
+### Writeup / README
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
+#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
-You're reading it! and here is a link to my [Traffic_sign_classifier](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+You're reading it! and here is a link to my [Traffic_sign_classifier](https://github.com/cw26378/UdacityCarND-Traffic-Sign-Classifier/blob/master/Traffic_Sign_Classifier.ipynb)
 
-###Data Set Summary & Exploration
+### Data Set Summary & Exploration
 
-####1. The first step is to load the data and provide a basic summary of the data set. In the code, the analysis is done by using python, numpy and/or pandas methods.
+#### 1. The first step is to load the data and provide a basic summary of the data set. In the code, the analysis is done by using python, numpy and/or pandas methods.
 
 I used the pandas library `pickle` to calculate summary statistics of the traffic signs data set. 
 import pickle
@@ -75,7 +76,7 @@ n_classes = len(np.unique(y_train))
 * The shape of a traffic sign image is 32*32*3.
 * The number of unique classes/labels in the data set is `n_classes` = 43.
 
-####2. Include an exploratory visualization of the dataset.
+#### 2. Include an exploratory visualization of the dataset.
 
 Here is an exploratory visualization of the data set. Histogram bar charts of training/validation/testing sets are showing how many training examples for each traffic sign under the label number from 0 to 42.
 ```python
@@ -98,7 +99,7 @@ fig = plt.gcf()
 ```
 
 
-![The ditribution of labels in data sets][./examples/histogram.png "Label distribution"]
+![The ditribution of labels in data sets][image0]
 
 Furthermore, a randomly picked training image is printed out together with the associated label number and the explanation. This just serves as a sanity check showing that the data is loaded and represented correctly.
 
@@ -130,22 +131,22 @@ For the specific example shown below, the output reads:
 `the random number =  1200`
 `the label number of this sign is: 36 ; and the designated sign is:  Go straight or right`
 
-![Selected traffic sign image with label][./examples/random_image_example.png "Go straight or right"]
+![Selected traffic sign image with label][image3]
 
-###Design and Test a Model Architecture
+### Design and Test a Model Architecture
 
-####1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
+#### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
 As a first step, I decided to convert the images to grayscale because the most identifiable patterns of traffic signs are shapes and edges, and that grayscale images have 3 times smaller input size compared to RGB images.
 
 Here is an example of a traffic sign image before and after grayscaling.
 
-![An Example of image before and after grayscale][./examples/grayscale_exp-before.png ./examples/grayscale_exp-after.png ]
+![An Example of image before and after grayscale][image2]
 
 As a last step, I normalized the image data because the normalization will help to speed up the training of neural network and be better prepared for different input data.
 
 
-####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
+#### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
 My final model consisted of the following layers:
 
@@ -164,11 +165,11 @@ My final model consisted of the following layers:
 
 
 
-####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
+#### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
 To train the model, I used the following parameters: BATCH_SIZE = 128, rate = 0.001, and I trained the model for 80 epochs. In order to reduce overfitting, I have used L2 regularization with lambda set as reg_lambda = 0.3. Then trained model is otained by calculating and minimizing the cross entropy type of loss function for the softmax. 
 
-####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
+#### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
 * training set accuracy of 1.0
@@ -180,11 +181,11 @@ The first model is based on LeNet without dropout.The problem with the initial m
 
 Another issue is that the training can be pretty slow. So I tried to play with the convolutional filter size(from 3x3 to 5x5) and found that the result with slightly larger conv filter size speed up the training but did not hurt performance.
 
-###Test a Model on New Images
+### Test a Model on New Images
 
-####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify. The images (after resize and converted to gray scale) are shown in the jupyter notebook.
+#### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify. The images (after resize and converted to gray scale) are shown in the jupyter notebook.
 
-####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set.
+#### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set.
 Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
@@ -199,7 +200,7 @@ Here are the results of the prediction:
 
 The model was able to correctly guess 5 of the 6 traffic signs, which gives an accuracy of 83%. Given that test set has also 93% accuracy this is reasonable. I also included the 6th images because I actually found that Stop sign image cannot be correctly identified by the model when selecting 5 images from download. This is to illustrate that I did not cherry picking the good 5 images from the web. Actually, I even tried two stop signs images but neither of the two stop signs are correctly labled. I checked the distribution histogram of the training examples. Clearly, at label = 14, the data size is small (dip shown in the histogram figure around 14). This may be related the failure at reading stop sign.  
 
-####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. 
+#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. 
 
 The code for making predictions on my final model is located in the 51st cell of the Ipython notebook.
 
